@@ -10,7 +10,6 @@ import { AnyAction, Dispatch } from 'redux';
 const WeatherTemp = () => {
     const dispatch = useDispatch<any>();
     const { loading, city, forecast, error } = useSelector((state: WeatherState) => state);
-    console.log("------ city ----------", city);
     const [search, set_search] = useState<string>('Mumbai');
     useEffect(() => {
         dispatch(fetchWeather(search));
