@@ -29,11 +29,9 @@ const Weather = () => {
 
     useEffect(() => {
         const fetchApi = async () => {
-            console.log(search)
             const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${search}&units=metric&appid=2ba94decc3e9ac5589ba135c56023c0a`;
             const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${search}&units=metric&appid=2ba94decc3e9ac5589ba135c56023c0a`;
 
-            // const response = await fetch(weatherUrl);
             const [weatherResponse, forecastResponse] = await Promise.all([fetch(weatherUrl), fetch(forecastUrl)]);
             const weatherData: City = await weatherResponse.json();
             const forecastData = await forecastResponse.json();
@@ -41,7 +39,6 @@ const Weather = () => {
             const currentWeather: CityName = weatherData.main;
             const weatherForecast: Forecast[] = forecastData?.list?.filter((data: Forecast) => data.dt_txt.includes("12:00:00"));
 
-            console.log(" currentWeather -----------", currentWeather);
             set_city(currentWeather);
             set_forecast(weatherForecast);
         }

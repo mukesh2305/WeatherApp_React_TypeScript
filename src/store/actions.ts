@@ -43,14 +43,10 @@ export const fetchWeather = (search: string) => {
             const weatherData: City = await weatherResponse.json();
             const forecastData: { list: Forecast[] } = await forecastResponse.json();
 
-            console.log("weather --------------", weatherData)
             const currentWeather: CityName = weatherData.main;
             const weatherForecast: Forecast[] = forecastData.list.filter((data: Forecast) =>
                 data.dt_txt.includes('12:00:00')
             );
-
-            console.log("------- currentWeather ----------", currentWeather);
-            console.log("------- weatherForecast ----------", weatherForecast);
 
             dispatch({
                 type: FETCH_WEATHER_SUCCESS,
